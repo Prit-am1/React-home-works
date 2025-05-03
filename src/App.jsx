@@ -1,22 +1,40 @@
 import { useState } from "react";
-import "./App.css";
-import Todolist from "./components/Todolist";
-import Userdata from "./components/Userdata";
-import Toggletheme from "./components/Toggletheme";
-import { ThemeProvider } from "./components/ThemeContext";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
+import BlogList from './components/BlogList';
+import BlogDetail from './components/BlogDetail';
+import {useSelector, useDispatch} from 'react-redux';
 
 function App() {
- return (
-  <>
-    {/* <Todolist /> */}
-    {/* <Userdata /> */}
-    <ThemeProvider>
-      <Toggletheme />
-    </ThemeProvider>
-  </>
- ); 
-};
+
+  const count = useSelector((state) => state.count); // get count from store
+  const dispatch = useDispatch(); // create dispatch function
+  return (
+    // <Router>
+    //   <Header />
+    //   <Routes>
+    //     <Route path="/" element={<SignUp />} />
+    //     <Route path="/signin" element={<SignIn />} />
+    //     <Route path="/blogs" element={<BlogList />} />
+    //     <Route path="/blogs/:id" element={<BlogDetail />} />
+    //   </Routes>
+    // </Router>
+
+    
+
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Redux Counter</h1>
+      <h2>{count}</h2>
+
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>Increment</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>Decrement</button>
+    </div>
+  );
+
+  
+}
 
 export default App;
 
-// I am on my newBranch. This change has to be added in my main branch 😀
